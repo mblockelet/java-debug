@@ -23,6 +23,8 @@ import java.util.logging.Logger;
 
 import com.microsoft.java.debug.core.Configuration;
 import com.microsoft.java.debug.core.adapter.ProtocolServer;
+import com.microsoft.java.debug.core.adapter.IProviderContext;
+
 
 public class JavaDebugServer implements IDebugServer {
     private static final Logger logger = Logger.getLogger(Configuration.LOGGER_NAME);
@@ -34,7 +36,7 @@ public class JavaDebugServer implements IDebugServer {
 
     private JavaDebugServer() {
         try {
-            this.serverSocket = new ServerSocket(0, 1);
+            this.serverSocket = new ServerSocket(4000, 1);
         } catch (IOException e) {
             logger.log(Level.SEVERE, String.format("Failed to create Java Debug Server: %s", e.toString()), e);
         }
@@ -60,6 +62,11 @@ public class JavaDebugServer implements IDebugServer {
             return this.serverSocket.getLocalPort();
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        JavaDebugServer server = (JavaDebugServer) JavaDebugServer.getInstance();
+        server.start();
     }
 
     /**

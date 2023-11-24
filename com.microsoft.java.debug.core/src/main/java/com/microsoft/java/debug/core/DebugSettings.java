@@ -37,7 +37,7 @@ public final class DebugSettings {
     public boolean showToString = true;
     public String logLevel;
     public String javaHome;
-    public HotCodeReplace hotCodeReplace = HotCodeReplace.MANUAL;
+    public HotCodeReplace hotCodeReplace = HotCodeReplace.NEVER;
     public StepFilters stepFilters = new StepFilters();
     public ExceptionFilters exceptionFilters = new ExceptionFilters();
     public boolean exceptionFiltersUpdated = false;
