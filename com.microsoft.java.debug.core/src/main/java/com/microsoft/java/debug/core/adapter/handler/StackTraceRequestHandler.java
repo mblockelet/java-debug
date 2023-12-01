@@ -262,7 +262,7 @@ public class StackTraceRequestHandler implements IDebugRequestHandler {
         String uri = context.getSourceLookupCache().computeIfAbsent(fullyQualifiedName, key -> {
             String fromProvider = context.getProvider(ISourceLookUpProvider.class).getSourceFileURI(key, relativeSourcePath);
             // avoid return null which will cause the compute function executed again
-            return StringUtils.isBlank(fromProvider) ? "" : fromProvider;
+            return StringUtils.isBlank(fromProvider) ? relativeSourcePath : fromProvider;
         });
 
         if (!StringUtils.isBlank(uri)) {
